@@ -1,0 +1,13 @@
+
+fastapi
+uvicorn
+python-multipart
+chromadb
+google-genai
+sentence-transformers
+pymupdf
+pytesseract
+pillow
+python-dotenv
+pwdlib[argon2]
+PyJWT

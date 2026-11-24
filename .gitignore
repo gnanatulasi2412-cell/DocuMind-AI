@@ -1,0 +1,46 @@
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# ChromaDB data
+backend/chroma_db/
+
+# Uploaded documents and private PDFs
+backend/uploads/
+uploads/
+*.pdf
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Frontend dependencies
+node_modules/
+frontend/node_modules/
+
+# Build output
+dist/
+frontend/dist/
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
