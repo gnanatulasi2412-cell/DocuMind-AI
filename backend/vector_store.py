@@ -1,12 +1,15 @@
 
-from pathlib import Path
 import chromadb
 
+from .database import DATA_DIR
 
-# Store ChromaDB inside the backend folder
-CHROMA_DIR = Path(__file__).resolve().parent / "chroma_db"
 
-# Reuse one ChromaDB client
+# Store ChromaDB inside the configurable persistent data directory.
+CHROMA_DIR = DATA_DIR / "chroma_db"
+
+CHROMA_DIR.mkdir(parents=True, exist_ok=True)
+
+# Reuse one ChromaDB client.
 _client = None
 
 
@@ -22,7 +25,7 @@ def get_chroma_client():
     return _client
 
 
-# Get a separate collection for each uploaded document
+# Get a separate collection for each uploaded document.
 def get_document_collection(document_id: str):
 
     client = get_chroma_client()
@@ -38,7 +41,7 @@ def get_document_collection(document_id: str):
     return collection
 
 
-# Store chunks and their embeddings
+# Store chunks and their embeddings.
 def store_embeddings(document_id: str, chunks: list):
 
     if not chunks:
@@ -80,7 +83,7 @@ def store_embeddings(document_id: str, chunks: list):
     }
 
 
-# Retrieve a document's collection
+# Retrieve a document's collection.
 def get_collection_by_document_id(document_id: str):
 
     client = get_chroma_client()

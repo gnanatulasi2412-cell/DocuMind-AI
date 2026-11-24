@@ -1,8 +1,9 @@
 
 import { useState } from "react";
 import { Sparkles, Mail, Lock, User, Eye, EyeOff } from "lucide-react";
+import API_BASE_URL from "../config";
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+
 
 function Login({ onLogin }) {
   const [isSignup, setIsSignup] = useState(false);

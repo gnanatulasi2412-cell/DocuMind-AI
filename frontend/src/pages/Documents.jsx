@@ -1,4 +1,4 @@
-
+import API_BASE_URL from "../config";
 import { useRef, useState } from "react";
 
 import {
@@ -13,8 +13,6 @@ import {
   ChevronDown,
   Eye
 } from "lucide-react";
-
-const API_BASE_URL = "http://127.0.0.1:8000";
 
 function Documents({
   documents,

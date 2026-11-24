@@ -11,7 +11,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+import API_BASE_URL from "../config";
 
 function Chat({ documents = [], token }) {
   const [message, setMessage] = useState("");
@@ -26,7 +26,7 @@ function Chat({ documents = [], token }) {
     },
   ]);
 
-  // Only show documents successfully indexed by the backend
+  // Only show documents successfully indexed by the backend.
   const processedDocuments = documents.filter(
     (doc) => doc.status === "Processed" && doc.backendDocumentId
   );
@@ -35,7 +35,7 @@ function Chat({ documents = [], token }) {
     (doc) => doc.backendDocumentId === selectedDocumentId
   );
 
-  // Clear selection if the selected document is deleted
+  // Clear selection if the selected document is deleted.
   useEffect(() => {
     if (
       selectedDocumentId &&
@@ -124,7 +124,6 @@ function Chat({ documents = [], token }) {
 
   return (
     <div className="chat-page">
-
       <div className="chat-heading">
         <div>
           <h2>Ask AI</h2>
@@ -138,21 +137,17 @@ function Chat({ documents = [], token }) {
       </div>
 
       <div className="chat-container">
-
         <div className="chat-document-selector">
-
           <div className="document-selector-icon">
             <FileText size={21} />
           </div>
 
           <div className="document-selector-content">
-
             <label htmlFor="chat-document-select">
               Choose your document
             </label>
 
             <div className="document-select-wrapper">
-
               <select
                 id="chat-document-select"
                 value={selectedDocumentId}
@@ -179,7 +174,6 @@ function Chat({ documents = [], token }) {
                 size={18}
                 className="document-select-chevron"
               />
-
             </div>
 
             <span className="document-selector-hint">
@@ -189,7 +183,6 @@ function Chat({ documents = [], token }) {
                     processedDocuments.length === 1 ? "" : "s"
                   } available`}
             </span>
-
           </div>
 
           {selectedDocument && (
@@ -198,17 +191,14 @@ function Chat({ documents = [], token }) {
               <span>Selected</span>
             </div>
           )}
-
         </div>
 
         <div className="chat-messages">
-
           {messages.map((msg, index) => (
             <div
               className={`chat-message ${msg.role}`}
               key={index}
             >
-
               <div className="chat-message-icon">
                 {msg.role === "assistant" ? (
                   <Bot size={20} />
@@ -218,7 +208,6 @@ function Chat({ documents = [], token }) {
               </div>
 
               <div className="chat-message-content">
-
                 <span>
                   {msg.role === "assistant" ? "DocuMind AI" : "You"}
                 </span>
@@ -226,15 +215,12 @@ function Chat({ documents = [], token }) {
                 <p style={{ whiteSpace: "pre-wrap" }}>
                   {msg.content}
                 </p>
-
               </div>
-
             </div>
           ))}
 
           {isLoading && (
             <div className="chat-message assistant">
-
               <div className="chat-message-icon">
                 <Bot size={20} />
               </div>
@@ -243,16 +229,12 @@ function Chat({ documents = [], token }) {
                 <span>DocuMind AI</span>
                 <p>Thinking... Please wait.</p>
               </div>
-
             </div>
           )}
-
         </div>
 
         <div className="chat-input-area">
-
           <div className="chat-input-box">
-
             <input
               type="text"
               placeholder={
@@ -278,17 +260,13 @@ function Chat({ documents = [], token }) {
             >
               <Send size={18} />
             </button>
-
           </div>
 
           <p className="chat-disclaimer">
             Answers are generated using your selected document.
           </p>
-
         </div>
-
       </div>
-
     </div>
   );
 }

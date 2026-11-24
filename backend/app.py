@@ -1,4 +1,4 @@
-
+import os
 from pathlib import Path
 from uuid import uuid4, UUID
 
@@ -19,6 +19,7 @@ from .vector_store import store_embeddings, get_chroma_client
 from .rag_qa import generate_answer
 
 from .database import (
+    DATA_DIR,
     initialize_database,
     save_document,
     get_user_document,
@@ -36,9 +37,19 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Frontend URLs allowed to communicate with this backend
+allowed_origins = [
+    origin.strip()
+    for origin in os.getenv(
+        "CORS_ORIGINS",
+        "http://localhost:5173,http://127.0.0.1:5173"
+    ).split(",")
+    if origin.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -52,7 +63,7 @@ def startup_event():
     initialize_database()
 
 
-UPLOAD_DIR = Path(__file__).resolve().parent / "uploads"
+UPLOAD_DIR = DATA_DIR / "uploads"
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 MAX_FILE_SIZE = 20 * 1024 * 1024

@@ -7,8 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Documents from "./pages/Documents";
 import Chat from "./pages/Chat";
 import Login from "./pages/Login";
-
-const API_BASE_URL = "http://127.0.0.1:8000";
+import API_BASE_URL from "./config";
 
 function App() {
   const [activePage, setActivePage] = useState("Dashboard");

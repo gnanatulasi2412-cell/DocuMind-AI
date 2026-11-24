@@ -1,8 +1,17 @@
 
+import os
 import sqlite3
 from pathlib import Path
 
-DATABASE_PATH = Path(__file__).resolve().parent / "documind.db"
+# Use persistent storage when DATA_DIR is configured.
+# Otherwise, keep the existing local database location.
+DATA_DIR = Path(
+    os.getenv("DATA_DIR", Path(__file__).resolve().parent)
+)
+
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+DATABASE_PATH = DATA_DIR / "documind.db"
 
 
 def get_connection():
