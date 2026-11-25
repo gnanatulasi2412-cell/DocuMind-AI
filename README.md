@@ -1,42 +1,42 @@
+# DocuMind AI — AI-Powered Document Intelligence
 
-# DocuMind — AI-Powered Document Intelligence
+DocuMind AI is a full-stack document intelligence platform that allows users to upload PDF documents, ask questions in natural language, and receive context-aware answers using **Retrieval-Augmented Generation (RAG)**.
 
-DocuMind is an AI-powered document intelligence platform that allows users to upload PDF documents, ask natural-language questions, and receive context-aware answers using Retrieval-Augmented Generation (RAG).
+The application combines semantic search, vector embeddings, and Google Gemini to make information retrieval from documents easier and more interactive.
 
 ## Features
 
-- User registration and login
-- Secure, user-specific document access
-- PDF upload and processing
-- Text extraction and document chunking
-- Semantic search using vector embeddings
-- AI-powered question answering
-- Document preview and deletion
-- Separate document libraries for individual users
+- **User Authentication** — User registration and login with JWT-based authentication.
+- **PDF Upload** — Upload and process PDF documents.
+- **Document Intelligence** — Extract and split document text into manageable chunks.
+- **Semantic Search** — Retrieve relevant information using vector embeddings.
+- **AI-Powered Q&A** — Ask natural-language questions and receive answers grounded in document context.
+- **Document Preview** — Preview uploaded PDF documents.
+- **Document Management** — Delete documents from your library.
+- **User-Specific Libraries** — Keep document access separated by user account.
 
 ## Technology Stack
 
-### Frontend
-- React
-- Vite
-- JavaScript
-- CSS
-- Lucide React
+| Layer | Technologies |
+|---|---|
+| Frontend | React, Vite, JavaScript, CSS, Lucide React |
+| Backend | Python, FastAPI |
+| Database | SQLite |
+| Authentication | JWT, Argon2 password hashing |
+| PDF Processing | PyMuPDF, Tesseract OCR, Pillow |
+| Embeddings | Sentence Transformers |
+| Vector Database | ChromaDB |
+| Generative AI | Google Gemini API |
 
-### Backend
-- Python
-- FastAPI
-- SQLite
-- JWT Authentication
-- PyMuPDF
-- Tesseract OCR
+## How It Works
 
-### AI and RAG
-- Google Gemini API
-- Sentence Transformers
-- ChromaDB
-- Semantic Search
-- Retrieval-Augmented Generation (RAG)
+1. A user registers or logs into DocuMind AI.
+2. The user uploads a PDF document.
+3. The backend extracts text from the PDF and divides it into chunks.
+4. Sentence Transformers generate vector embeddings.
+5. ChromaDB stores the document embeddings.
+6. Semantic search retrieves relevant chunks based on the user's question.
+7. Google Gemini generates a context-aware answer using the retrieved content.
 
 ## Project Structure
 
@@ -74,49 +74,30 @@ DocuMind-AI/
 - Python 3.11 or newer
 - Node.js and npm
 - Tesseract OCR
-- Gemini API key
+- Google Gemini API key
 
-### Backend Setup
-
-1. Clone the repository.
-2. Create and activate a Python virtual environment.
-3. Install the backend dependencies.
-4. Create a `.env` file using `.env.example`.
-5. Add your own Gemini API key and JWT secret.
-
-Run the backend:
+### 1. Clone the Repository
 
 ```bash
-python -m uvicorn backend.app:app --reload
+git clone https://github.com/sduppala-commits/DocuMind-AI.git
+cd DocuMind-AI
 ```
 
-### Frontend Setup
+### 2. Set Up the Backend
 
-Open another terminal:
+Create and activate a virtual environment:
 
 ```bash
-cd frontend
-npm install
-npm run dev
+python -m venv .venv
 ```
 
-## How It Works
+On Windows PowerShell:
 
-1. A user registers or logs into DocuMind.
-2. The user uploads a PDF document.
-3. The backend extracts and chunks the document text.
-4. Sentence Transformers generate embeddings.
-5. ChromaDB stores the document vectors.
-6. Semantic search retrieves relevant document chunks.
-7. Gemini generates an answer using the retrieved context.
+```powershell
+.venv\Scripts\Activate.ps1
+```
 
-## Team
+Install dependencies:
 
-- Sravya — Frontend development, UI/UX, API integration and testing.
-- Tulasi — Backend development, RAG pipeline and AI integration.
-
-## Project Status
-
-Core authentication, PDF processing, document management, user isolation and AI question answering have been tested locally.
-
-Deployment is in progress.
+```bash
+pip install -r backend
